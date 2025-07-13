@@ -34,7 +34,7 @@
 
 .assistant-message .message-content {
   background: var(--brand-gray);
-  border-color: rgba(255,255,255,0.10);
+  border-color: #fff;
   color: #fff;
 }
 

@@ -16,11 +16,11 @@ const ChatMessage = ({ message }) => {
   const getMessageIcon = () => {
     switch (role) {
       case 'user':
-        return <User size={16} />;
+        return <User size={16} color="#fff" />;
       case 'assistant':
-        return <Bot size={16} />;
+        return <Bot size={16} color="#fff" />;
       case 'error':
-        return <AlertCircle size={16} />;
+        return <AlertCircle size={16} color="#e53935" />;
       default:
         return null;
     }
