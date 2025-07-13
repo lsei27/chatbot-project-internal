@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterface.css';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
-import { Send, Bot, User } from 'lucide-react';
 
 const ChatInterface = ({ isConnected, setIsConnected }) => {
   const [messages, setMessages] = useState([]);
