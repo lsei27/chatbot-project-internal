@@ -55,7 +55,10 @@ const ChatMessage = ({ message }) => {
         </div>
         <div className="message-text">
           {role === 'assistant' ? (
-            <ReactMarkdown>{content}</ReactMarkdown>
+            <>
+              {console.log('ASSISTANT RAW CONTENT:', content)}
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </>
           ) : (
             content
           )}

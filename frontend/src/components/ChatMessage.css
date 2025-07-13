@@ -80,6 +80,28 @@
   color: #FF3B30;
 }
 
+.message-text p {
+  margin: 0.5em 0;
+}
+
+.message-text ul,
+.message-text ol {
+  margin: 0.5em 0 0.5em 1.5em;
+  padding-left: 1.5em;
+}
+
+.message-text li {
+  margin-bottom: 0.25em;
+}
+
+.message-text strong {
+  font-weight: bold;
+}
+
+.message-text em {
+  font-style: italic;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
