@@ -22,6 +22,10 @@ body {
   background: #111112;
 }
 
+.App-header, header, .header, h1, h2, h3, nav {
+  color: #fff !important;
+}
+
 :root {
   --brand-black: #111112;
   --brand-white: #fff;

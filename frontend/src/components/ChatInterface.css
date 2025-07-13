@@ -34,7 +34,7 @@
 .welcome-message {
   text-align: center;
   padding: 3rem 1rem;
-  color: #666;
+  color: #fff;
 }
 
 .welcome-icon {
@@ -46,7 +46,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: #fff;
 }
 
 .welcome-message p {
@@ -54,6 +54,7 @@
   line-height: 1.5;
   max-width: 500px;
   margin: 0 auto;
+  color: #fff;
 }
 
 .loading-message {
@@ -62,7 +63,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  color: #666;
+  color: #fff;
 }
 
 .loading-dots {
