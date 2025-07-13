@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 // Konfigurace axios
-const API_BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://chatbot-backend.onrender.com/api'
-  : 'http://localhost:3001/api';
+const API_BASE_URL = 'https://inc-internal.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
