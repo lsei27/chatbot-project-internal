@@ -17,7 +17,9 @@ class ChatService {
     // Vytvořit nový thread
     async createThread() {
         try {
+            console.log('Vytvářím thread u OpenAI...');
             const thread = await openai.beta.threads.create();
+            console.log('Thread vytvořen:', thread);
             return thread;
         } catch (error) {
             console.error('Error creating thread:', error);
@@ -28,13 +30,13 @@ class ChatService {
     // Odeslat zprávu asistentovi
     async sendMessage(message, threadId) {
         try {
-            // Vytvořit thread pokud neexistuje
             if (!threadId) {
+                console.log('ThreadId není, vytvářím nový thread...');
                 const thread = await this.createThread();
                 threadId = thread.id;
             }
 
-            // Přidat zprávu do threadu
+            console.log('Přidávám zprávu do threadu:', threadId);
             await openai.beta.threads.messages.create(
                 threadId,
                 {
@@ -42,20 +44,22 @@ class ChatService {
                     content: message
                 }
             );
+            console.log('Zpráva přidána.');
 
-            // Uložit uživatelskou zprávu do historie
             await chatHistory.saveMessage(threadId, 'user', message, new Date().toISOString());
 
-            // Spustit run s asistentem
+            console.log('Spouštím run s asistentem:', this.assistantId);
             const run = await openai.beta.threads.runs.create(
                 threadId,
                 {
                     assistant_id: this.assistantId
                 }
             );
+            console.log('Run spuštěn:', run);
 
             // Počkat na dokončení run
             const result = await this.waitForRunCompletion(threadId, run.id);
+            console.log('Run dokončen:', result);
 
             // Získat odpověď asistenta
             const messages = await openai.beta.threads.messages.list(threadId);
@@ -65,7 +69,6 @@ class ChatService {
                 msg.run_id === run.id
             );
 
-            // Uložit odpověď asistenta do historie
             if (assistantMessage) {
                 await chatHistory.saveMessage(
                     threadId,
@@ -83,7 +86,6 @@ class ChatService {
                 assistantMessage: assistantMessage?.content[0]?.text?.value || 'Nepodařilo se získat odpověď',
                 runStatus: result.status
             };
-
         } catch (error) {
             console.error('Error sending message:', error);
             throw new Error('Nepodařilo se odeslat zprávu asistentovi');
