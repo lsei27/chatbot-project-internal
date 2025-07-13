@@ -59,6 +59,7 @@ class ChatService {
 
             // Získat odpověď asistenta
             const messages = await openai.beta.threads.messages.list(threadId);
+            console.log('OpenAI thread messages:', JSON.stringify(messages, null, 2));
             const assistantMessage = messages.data.find(msg => 
                 msg.role === 'assistant' && 
                 msg.run_id === run.id
@@ -72,6 +73,8 @@ class ChatService {
                     assistantMessage.content[0]?.text?.value || '',
                     new Date().toISOString()
                 );
+            } else {
+                console.error('Žádná odpověď od asistenta! Celá OpenAI odpověď:', JSON.stringify(messages, null, 2));
             }
 
             return {
