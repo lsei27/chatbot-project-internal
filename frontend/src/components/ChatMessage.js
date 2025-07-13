@@ -1,6 +1,7 @@
 import React from 'react';
 import './ChatMessage.css';
 import { Bot, User, AlertCircle } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 const ChatMessage = ({ message }) => {
   const { role, content, timestamp } = message;
@@ -53,7 +54,11 @@ const ChatMessage = ({ message }) => {
           </span>
         </div>
         <div className="message-text">
-          {content}
+          {role === 'assistant' ? (
+            <ReactMarkdown>{content}</ReactMarkdown>
+          ) : (
+            content
+          )}
         </div>
       </div>
     </div>
