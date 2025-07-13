@@ -10,7 +10,6 @@ const Header = () => {
             src="https://cdn.prod.website-files.com/683548bebd66499a4ba7c0e5/6839b05d9abc5c5378aa2f74_INCatering_logo.svg"
             alt="IN CATERING logo"
             className="logo-img"
-            style={{ width: 40, height: 40 }}
           />
         </div>
         <div className="header-subtitle">
