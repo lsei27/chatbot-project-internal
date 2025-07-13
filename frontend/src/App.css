@@ -10,15 +10,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #111112;
   min-height: 100vh;
-  color: #333;
+  color: #fff;
 }
 
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #111112;
+}
+
+:root {
+  --brand-black: #111112;
+  --brand-white: #fff;
+  --brand-red: #e53935;
+  --brand-red-dark: #b71c1c;
+  --brand-gray: #232326;
 }
 
 .main-content {

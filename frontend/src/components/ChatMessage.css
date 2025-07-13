@@ -17,29 +17,31 @@
 }
 
 .message-content {
-  max-width: 80%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  background: var(--brand-gray);
+  border-radius: 18px;
+  padding: 1.1rem 1.2rem;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  color: #fff;
 }
 
 .user-message .message-content {
-  background: rgba(0, 122, 255, 0.1);
-  border-color: rgba(0, 122, 255, 0.3);
+  background: var(--brand-red);
+  border-color: var(--brand-red-dark);
+  color: #fff;
 }
 
 .assistant-message .message-content {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--brand-gray);
+  border-color: rgba(255,255,255,0.10);
+  color: #fff;
 }
 
 .error-message .message-content {
-  background: rgba(255, 59, 48, 0.1);
-  border-color: rgba(255, 59, 48, 0.3);
-  color: #FF3B30;
+  background: #2d0909;
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }
 
 .message-header {
