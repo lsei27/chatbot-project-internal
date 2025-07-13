@@ -36,7 +36,7 @@ const ChatInterface = ({ isConnected, setIsConnected }) => {
       // Pokud není threadId, vytvoř nový thread
       if (!currentThreadId) {
         const threadResponse = await ChatService.createThread();
-        currentThreadId = threadResponse.data?.threadId || threadResponse.threadId;
+        currentThreadId = threadResponse.data?.data?.threadId || threadResponse.data?.threadId || threadResponse.threadId;
         setThreadId(currentThreadId);
       }
 
@@ -44,14 +44,14 @@ const ChatInterface = ({ isConnected, setIsConnected }) => {
       const data = await ChatService.sendMessage(message, currentThreadId);
 
       // Uložit threadId pokud je v odpovědi
-      if (data.threadId && !threadId) {
-        setThreadId(data.threadId);
+      if ((data.data?.threadId || data.threadId) && !threadId) {
+        setThreadId(data.data?.threadId || data.threadId);
       }
 
       const assistantMessage = {
         id: Date.now() + 1,
         role: 'assistant',
-        content: data.assistantMessage,
+        content: data.data?.assistantMessage || data.assistantMessage || 'Nepodařilo se získat odpověď',
         timestamp: new Date().toISOString()
       };
 
