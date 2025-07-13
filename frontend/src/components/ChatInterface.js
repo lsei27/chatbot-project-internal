@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterface.css';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
+import ChatService from '../services/ChatService';
 
 const ChatInterface = ({ isConnected, setIsConnected }) => {
   const [messages, setMessages] = useState([]);
@@ -31,24 +32,19 @@ const ChatInterface = ({ isConnected, setIsConnected }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/chat/message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: message,
-          threadId: threadId
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      let currentThreadId = threadId;
+      // Pokud není threadId, vytvoř nový thread
+      if (!currentThreadId) {
+        const threadResponse = await ChatService.createThread();
+        currentThreadId = threadResponse.data?.threadId || threadResponse.threadId;
+        setThreadId(currentThreadId);
       }
 
-      const data = await response.json();
-      
-      if (data.threadId) {
+      // Odeslat zprávu
+      const data = await ChatService.sendMessage(message, currentThreadId);
+
+      // Uložit threadId pokud je v odpovědi
+      if (data.threadId && !threadId) {
         setThreadId(data.threadId);
       }
 
@@ -66,7 +62,7 @@ const ChatInterface = ({ isConnected, setIsConnected }) => {
       const errorMessage = {
         id: Date.now() + 1,
         role: 'error',
-        content: 'Nepodařilo se odeslat zprávu. Zkontrolujte připojení k serveru.',
+        content: error.message || 'Nepodařilo se odeslat zprávu. Zkontrolujte připojení k serveru.',
         timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, errorMessage]);
