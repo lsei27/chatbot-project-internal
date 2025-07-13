@@ -105,6 +105,19 @@
   font-style: italic;
 }
 
+.message-text,
+.message-text p,
+.message-text ul,
+.message-text ol,
+.message-text li,
+.message-text strong,
+.message-text em,
+.message-text span,
+.message-text div,
+.message-text a {
+  color: #fff !important;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
